@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--suppress SqlNoDataSourceInspection, SqlDialectInspection -->
+<mapper namespace="com.kelin.springboot.dao.UserDao">
+
+    <sql id="userColumns">
+        id AS "id",
+        name AS "name",
+        password AS "password",
+        update_time AS "updateDate"
+    </sql>
+
+    <select id="findUserById" resultType="User" parameterType="string">
+        SELECT
+        <include refid="userColumns"/>
+        FROM user a
+        WHERE  a.id= #{id}
+    </select>
+
+    <select id="findUserByLoginName" resultType="User" parameterType="string">
+        SELECT
+        <include refid="userColumns"/>
+        FROM user a
+        WHERE  a.name= #{name}
+    </select>
+</mapper>
